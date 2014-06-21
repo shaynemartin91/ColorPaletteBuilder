@@ -21,5 +21,9 @@ var Palette = Backbone.View.extend({
 				width: (100 / this.colors.length) + '%'
 			});
 		}
-	}
+	},
+    reset: function(){
+        this.colors = [];
+        this.$el.empty();
+    }
 });

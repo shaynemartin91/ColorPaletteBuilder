@@ -1,6 +1,7 @@
 var Toolbar = Backbone.View.extend({
 	events: {
-		'click .add': 'onAddClick'
+		'click .add': 'onAddClick',
+        'click .reset': 'onResetClick',
 	},
 	initialize: function(options) {
 		this.app = options.app;
@@ -11,5 +12,8 @@ var Toolbar = Backbone.View.extend({
             this.app.palette.push( new Color(value) );
         else
             alert('"' + value + '" is an invalid hex code!');
-	}
+	},
+    onResetClick : function(){
+        this.app.palette.reset();
+    }
 });

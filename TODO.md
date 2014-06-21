@@ -5,7 +5,7 @@ A really basic color palette builder.
 ### Tasks:
 
 [ ] When a color is added, clear the field and fill it with a new random color.
-[ ] Add validation to the input so that invalid colors cannot be added.
+[X] Add validation to the input so that invalid colors cannot be added.
 [ ] Add a reset button that clears out existing colors.
 [ ] When a color is added, load the name from the COLOURlovers API. If it exists, add it underneath the hex label.
 [ ] Make the bars animate when a new color is added?

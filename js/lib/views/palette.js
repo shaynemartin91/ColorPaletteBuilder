@@ -7,8 +7,8 @@ var Palette = Backbone.View.extend({
 		this.colors.push(color);
 
 		var $column = $('<div>');
-		var $swatch = $('<div class="swatch"><div class="label">' + color + '</div></div>');
-		$swatch.css({background: color}).appendTo($column);
+		var $swatch = $('<div class="swatch"><div class="label">' + color.displayHexVal() + '</div></div>');
+		$swatch.css({background: color.displayHexVal()}).appendTo($column);
 
 		this.$el.append($column);
 		this.update();

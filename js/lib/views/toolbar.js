@@ -7,6 +7,6 @@ var Toolbar = Backbone.View.extend({
 	},
 	onAddClick: function() {
 		var value = $.trim(this.$('input').val());
-		this.app.palette.push(value);
+		this.app.palette.push( new Color(value) );
 	}
 });

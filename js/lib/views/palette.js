@@ -31,5 +31,39 @@ var Palette = Backbone.View.extend({
     reset: function(){
         this.colors = [];
         this.$el.empty();
+    },
+    savePalette : function(name){
+        var colorData = this.colors.map(function(color){
+            return color.hex;
+        });
+        var savedPalettes = JSON.parse(localStorage.getItem('paletteCache'))|| {};
+        
+        savedPalettes[name] = colorData;
+        localStorage.setItem('paletteCache', JSON.stringify(savedPalettes));
+    },
+    loadPalette : function(name){
+        
+        var savedPalettes = JSON.parse(localStorage.getItem('paletteCache')) || {},
+            colorData = savedPalettes[name];
+        
+        if(colorData === null || colorData === undefined)
+            alert("Could not find palette " + name + ".");
+        else{
+            this.colors = [];
+            
+            var palette = this;
+            colorData.forEach(function(color){
+                palette.push(color);
+            });
+        }
+    },
+    getSavedPalettes : function(){
+        var savedPalettes = JSON.parse(localStorage.getItem('paletteCache')) || {},
+            paletteNames = [];
+        
+        for(var paletteName in savedPalettes)
+            paletteNames.push(paletteName);
+        
+        return paletteNames;
     }
 });

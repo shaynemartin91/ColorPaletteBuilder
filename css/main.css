@@ -42,11 +42,12 @@
 
 #palette > * {
 	position: relative;
-float: left;
-height: 100%;
-box-sizing: border-box;
-border-radius: 10px;
-border: 5px solid #fff;
+    float: left;
+    height: 100%;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 5px solid #fff;
+    transition:.2s ease-in;
 }
 /*
 #palette .swatch {

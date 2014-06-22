@@ -12,6 +12,8 @@ var Toolbar = Backbone.View.extend({
             this.app.palette.push(value);
         else
             alert('"' + value + '" is an invalid hex code!');
+        
+        this.$('input').val('#'+Color.randomHex());
 	},
     onResetClick : function(){
         this.app.palette.reset();

@@ -20,6 +20,7 @@ var Palette = Backbone.View.extend({
     setColorNames : function(data){
         var palette = this;
         data.forEach(function( searchResult ){
+            localStorage.setItem(searchResult.hex.toLowerCase(), searchResult.title);
             palette.colors.forEach(function(color){
                 if( color.name === undefined && color.hex.toLowerCase() === searchResult.hex.toLowerCase()){
                     color.name = searchResult.title;

@@ -20,8 +20,10 @@ var Color = Backbone.View.extend({
         return '#' + this.hex;
     },
     getName : function(callback){
-                
-        if(callback && typeof callback === 'function'){
+        var cachedName = localStorage.getItem(this.hex.toLowerCase());
+        if(cachedName !== null)
+            this.name = cachedName;
+        else if(callback && typeof callback === 'function'){
             window.cb || (window.cb = {});
             
             var cbName = App.genId();

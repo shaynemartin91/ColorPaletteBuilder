@@ -57,6 +57,7 @@ var Palette = Backbone.View.extend({
             alert("Could not find palette " + name + ".");
         else{
             this.colors = [];
+            this.$el.empty();
             
             var palette = this;
             colorData.forEach(function(color){

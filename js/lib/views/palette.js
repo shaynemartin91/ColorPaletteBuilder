@@ -4,7 +4,7 @@ var Palette = Backbone.View.extend({
 		this.colors = [];
 	},
 	push: function(hex) {
-        var $swatch = $('<div class="swatch ' +hex+'_'+this.colors.length+'"><div class="label">' + '#'+hex + '<div class="name"></div></div></div>');
+        var $swatch = $('<div class="swatch ' +hex+'_'+this.colors.length+'"><div class="swatch-remove">X</div><div class="label">' + '#'+hex + '<div class="name"></div></div></div>');
 		this.$el.append($swatch);
         
         this.colors.push(new Color({app : this.app, el : '.'+Color.cleanHex(hex) + '_' + this.colors.length, hex : hex}));

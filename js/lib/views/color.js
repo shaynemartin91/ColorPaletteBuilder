@@ -1,4 +1,7 @@
 var Color = Backbone.View.extend({
+    events: {
+		'click .swatch-remove': 'remove'
+	},
     initialize : function(options){
         
         this.app = options.app;
@@ -42,6 +45,17 @@ var Color = Backbone.View.extend({
         
         if(this.name !== undefined)
             this.$el.find('.name').text(this.name)
+    },
+    remove : function(){
+        this.app.palette.colors.splice(this.index,1);
+        
+        var indexThreshold = this.index;
+        this.app.palette.colors.forEach(function(color){
+            if(color.index>indexThreshold)
+                color.index = color.index-1;
+        });
+        this.$el.remove();
+        this.app.palette.update();
     }
 },{
     RawHexRegex : new RegExp('^([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$'),

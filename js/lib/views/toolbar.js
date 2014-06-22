@@ -21,12 +21,16 @@ var Toolbar = Backbone.View.extend({
         this.app.palette.reset();
     },
     onSaveClick : function(){
-        var name = prompt("What's this palette's name?")
+        if(this.app.palette.name === undefined){
+            var name = prompt("What's this palette's name?")
         
-        if(name === null)
-            name = (new Date()).toString();
+            if(name === null)
+                name = (new Date()).toString();
         
-        this.app.palette.savePalette(name);
+            this.app.palette.savePalette(name);
+        } 
+        else 
+            this.app.palette.saveCurrentPalette();
     },
     onLoadClick : function(){
         var names = this.app.palette.getSavedPalettes().join('\n');

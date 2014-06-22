@@ -30,6 +30,7 @@ var Palette = Backbone.View.extend({
     },
     reset: function(){
         this.colors = [];
+        this.name = undefined;
         this.$el.empty();
     },
     savePalette : function(name){
@@ -40,6 +41,11 @@ var Palette = Backbone.View.extend({
         
         savedPalettes[name] = colorData;
         localStorage.setItem('paletteCache', JSON.stringify(savedPalettes));
+        
+        this.name = name;
+    },
+    saveCurrentPalette : function(){
+        this.savePalette(this.name);
     },
     loadPalette : function(name){
         
@@ -55,6 +61,8 @@ var Palette = Backbone.View.extend({
             colorData.forEach(function(color){
                 palette.push(color);
             });
+            
+            this.name = name;
         }
     },
     getSavedPalettes : function(){

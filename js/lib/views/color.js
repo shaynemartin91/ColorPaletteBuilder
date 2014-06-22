@@ -9,18 +9,27 @@ var Color = Backbone.View.extend({
         else
             this.hex = Color.randomHex();
         
-        this.getName(function(name){
-            self.name = name;
+        this.getName(function(data){
+            app.palette.setColorNames(data);
         });
     },
     displayHexVal : function(){
         return '#' + this.hex;
     },
     getName : function(callback){
-        var name = '';
-        
-        if(callback && typeof callback === 'function')
-            callback(name);
+                
+        if(callback && typeof callback === 'function'){
+            window.cb || (window.cb = {});
+            
+            var cbName = App.genId();
+            window.cb[cbName] = callback;
+            
+            $.ajax({
+                type: 'GET',
+                url : 'http://www.colourlovers.com/api/color/' + this.hex + '?format=json&jsonCallback=window.cb.' + cbName,
+                dataType : 'jsonp'
+            });    
+        }    
     },
     update : function(width){
         if(width === undefined)
@@ -30,6 +39,9 @@ var Color = Backbone.View.extend({
             'width' : width,
             'background-color' : this.displayHexVal()
         });
+        
+        if(this.name !== undefined)
+            this.$el.find('.name').text(this.name)
     }
 },{
     RawHexRegex : new RegExp('^([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$'),

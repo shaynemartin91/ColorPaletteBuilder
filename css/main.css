@@ -41,12 +41,14 @@
 }
 
 #palette > * {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	box-sizing: border-box;
+	position: relative;
+float: left;
+height: 100%;
+box-sizing: border-box;
+border-radius: 10px;
+border: 5px solid #fff;
 }
-
+/*
 #palette .swatch {
 	position: absolute;
 	overflow: hidden;
@@ -56,7 +58,7 @@
 	bottom: 2px;
 	border-radius: 3px;
 }
-
+*/
 #palette .label {
 	position: absolute;
 	text-align: center;
@@ -76,3 +78,4 @@ body {
 a {
 	text-decoration: none;
 }
+html, body, #palette { height: 100%; }

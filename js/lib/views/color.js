@@ -1,6 +1,8 @@
 var Color = Backbone.View.extend({
     initialize : function(options){
+        
         this.app = options.app;
+        this.index = this.app.palette.colors.length;
         
         if( typeof options.hex === 'string' && Color.validate(options.hex) )
             this.hex = Color.cleanHex(options.hex);
@@ -16,8 +18,19 @@ var Color = Backbone.View.extend({
     },
     getName : function(callback){
         var name = '';
-        callback(name);
-    }    
+        
+        if(callback && typeof callback === 'function')
+            callback(name);
+    },
+    update : function(width){
+        if(width === undefined)
+            width = (100 / this.app.palette.colors.length) + '%';
+        
+        this.$el.css({
+            'width' : width,
+            'background-color' : this.displayHexVal()
+        });
+    }
 },{
     RawHexRegex : new RegExp('^([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$'),
     DisplayHexRegex : new RegExp('^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$'),

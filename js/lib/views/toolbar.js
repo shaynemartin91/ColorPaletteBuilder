@@ -7,9 +7,9 @@ var Toolbar = Backbone.View.extend({
 		this.app = options.app;
 	},
 	onAddClick: function() {
-		var value = $.trim(this.$('input').val());
+		var value = Color.cleanHex($.trim(this.$('input').val()));
         if( Color.validate(value) )
-            this.app.palette.push( new Color({app : this.app, hex : value}) );
+            this.app.palette.push(value);
         else
             alert('"' + value + '" is an invalid hex code!');
 	},
